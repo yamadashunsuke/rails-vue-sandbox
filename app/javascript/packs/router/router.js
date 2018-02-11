@@ -3,6 +3,7 @@ import Vue from 'vue/dist/vue.esm';
 import NewCar from '../components/cars/new_car.vue'
 import NewPrice from '../components/cars/new_price.vue'
 import Confirm from '../components/cars/confirm.vue'
+import Complete from '../components/cars/complete.vue'
 
 Vue.use(VueRouter)
 
@@ -12,5 +13,6 @@ export default new VueRouter({
     { path: '/cars/new', component: NewCar, props: true },
     { path: '/cars/new_price', component: NewPrice, props: true },
     { path: '/cars/confirm', component: Confirm, props: true },
+    { path: '/cars/complete', component: Complete, props: true },
   ],
 })

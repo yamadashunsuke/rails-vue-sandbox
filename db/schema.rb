@@ -28,11 +28,15 @@ ActiveRecord::Schema.define(version: 20180114091808) do
   end
 
   create_table "cars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "maker_id", null: false
     t.string "maker"
-    t.string "model"
+    t.bigint "car_model_id", null: false
+    t.string "car_model"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["car_model_id"], name: "index_cars_on_car_model_id"
+    t.index ["maker_id"], name: "index_cars_on_maker_id"
   end
 
   create_table "makers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

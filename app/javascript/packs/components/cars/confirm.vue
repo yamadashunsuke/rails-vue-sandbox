@@ -13,13 +13,16 @@
   export default {
     methods: {
       buttonClick: function() {
-        console.log("button click");
-        axios.post(`../api/cars`)
+        console.log(this.$store.getters.car)
+        axios.post(`../api/cars`, this.$store.getters.car)
           .then(res => {
-            this.makers = res.data.makers;
-            console.log(this.makers)
+            if (res.data.status == 200) {
+              this.$router.push('/cars/complete');
+            } else {
+              alert("登録に失敗しました。")
+            }
           });
-      }
+      },
     },
   }
 </script>

@@ -24,9 +24,18 @@ const store = new Vuex.Store({
     },
   },
   getters: {
-    maker(state) { return state.maker },
-    model(state) { return state.model },
+    maker_obj(state) { return { id: state.maker_id, name: state.maker } },
+    model_obj(state) { return { id: state.model_id, name: state.model } },
     price(state) { return state.pirce },
+    car(state) { return {
+      car: {
+        maker_id: state.maker_id,
+        maker: state.maker,
+        car_model_id: state.model_id,
+        car_model: state.model,
+        price: state.price,
+      }
+    } },
   }
 })
 

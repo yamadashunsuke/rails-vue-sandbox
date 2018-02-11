@@ -2,6 +2,7 @@
   <div class="form2">
     <p>価格: {{ price }}</p>
     <input v-model="price">
+    <input type="button" value="戻る" v-on:click="goPreviousPage()">
     <input type="button" value="確認" v-on:click="buttonClick()">
   </div>
 </template>
@@ -19,6 +20,10 @@
         console.log("new price is " + this.price);
         this.$store.commit('setPrice', this.price);
         this.$router.push('/cars/confirm');
+      },
+      goPreviousPage: function() {
+        this.$store.commit('setPrice', this.price);
+        this.$router.push('/cars/new');
       }
     },
   }

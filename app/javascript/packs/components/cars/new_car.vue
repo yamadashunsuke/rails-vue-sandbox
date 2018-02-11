@@ -1,12 +1,12 @@
 <template>
   <div class="form1">
-    <p>メーカー: {{ car.maker }} </p>
+    <p>メーカー: {{ car.maker.name }} </p>
     <select v-model="car.maker" class="CarModelSelectList" @change="fetchModels" >
       <option v-for="maker in makers" v-bind:value="maker">
           {{ maker.name }}
       </option>
     </select>
-    <p>車種: {{ car.model }}</p>
+    <p>車種: {{ car.model ? car.model.name : "" }}</p>
     <select v-model="car.model" class="CarModelSelectList" >
       <option v-for="model in models" v-bind:value="model">
           {{ model.name }}
@@ -23,8 +23,8 @@
     data: function () {
       return {
         car: {
-          maker: "",
-          model: "",
+          maker: { name: "", id: null },
+          model: { name: "", id: null },
         },
         makers: [],
         models: [],
@@ -32,6 +32,8 @@
     },
     mounted: function () {
       this.fetchMakers();
+      this.car.maker = this.$store.getters.maker_obj;
+      this.car.model = this.$store.getters.car_obj;
     },
     methods: {
       buttonClick: function() {
