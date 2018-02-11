@@ -1,0 +1,2 @@
+module BomesHelper
+end

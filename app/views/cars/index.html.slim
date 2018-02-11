@@ -1,0 +1,10 @@
+h1 
+  | 車両一覧
+.container
+  .row
+    #car_index.col.s4.m6
+      .card v-for="car in cars"
+        span.card-title
+          | {{ car.model }}
+
+= javascript_pack_tag 'cars/index'
