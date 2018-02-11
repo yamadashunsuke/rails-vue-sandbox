@@ -7,13 +7,17 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     maker: '',
+    maker_id: null,
     model: '',
+    model_id: null,
     price: '',
   },
   mutations: {
     setMaker(state, car){
-      state.maker = car.maker;
-      state.model = car.model;
+      state.maker = car.maker.name;
+      state.maker_id = car.maker.id;
+      state.model = car.model.name;
+      state.model_id = car.model.id;
     },
     setPrice(state, price) {
       state.price = price;
