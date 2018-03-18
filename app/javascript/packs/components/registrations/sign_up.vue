@@ -1,10 +1,15 @@
 <template>
   <div class="form1">
     <form @submit.prevent="onSubmit">
-      <mail-address @input-change="mail_valid"></mail-address>
-      <password @input-change="password_valid"></password>
+      <mail-address ref="input_mail" @input-change="mail_valid"></mail-address>
+      <password ref="input_pass" @input-change="password_valid"></password>
       <input type="submit" value="次へ" :disabled="!isValidate" >
     </form>
+    <ul class="errors" v-if="hasResponseErrors">
+      <li v-for="error in response_errors">
+        {{ error }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -17,14 +22,17 @@
         valid: {
           mail_address: false,
           password: false
-        }
+        },
+        response_errors: []
       }
     },
     methods: {
       onSubmit(){
         let post_params = {
-          mail_address: this.mail_address,
-          password: this.password
+          user: {
+            mail_address: this.$refs.input_mail.mail_address,
+            password: this.$refs.input_pass.password
+          }
         }
         let headers = {
           headers: {
@@ -36,6 +44,8 @@
             console.log(res.data);
             if (res.data.message == "OK") {
               this.nextPage();
+            } else {
+              this.response_errors = res.data.error_messages
             }
           });
       },
@@ -56,6 +66,9 @@
     computed: {
       isValidate: function() {
         return this.valid.mail_address && this.valid.password
+      },
+      hasResponseErrors: function() {
+        return this.response_errors.length > 0
       }
     }
   }
