@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  ## アカウント登録
+  get 'sign_up', to: 'registrations#new'
+  post 'sign_up', to: 'registrations#create'
+  get 'sign_up/tel', to: 'registrations#tel'
+  post 'sign_up/tel', to: 'registrations#tel_create'
+
   get 'books/index'
   resources :cars, only: %i(new index)
-  get 'cars/new_price'
+  # get 'cars/new_price'
   get 'cars/confrim'
   get 'cars/complete'
 

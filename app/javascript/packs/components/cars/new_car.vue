@@ -57,10 +57,3 @@
     },      
   }
 </script>
-
-<style lang="scss" scoped>
-  .CarModelSelectList {
-    display: block;
-    width: 200px;
-  }
-</style>
